@@ -50,10 +50,20 @@ import { computed, ref } from 'vue';
       {{ completedItems.length }} completed |
       {{ remainingItems.length }} remaining
     </p>
-    <ul>
+    <ul :class="$style.list">
       <li v-for="todo in todoList" :key="`todo-id-${todo.id}`">
         <input type="checkbox" :checked="todo.completed" /> {{ todo.title }}
       </li>
     </ul>
   </div>
 </template>
+
+<!-- Reserve using the style element for cases in which encapsulation is paramount -->
+<style module>
+  /* 'scoped' variable is appended with a unique id for encapsulating styles per component */
+  /* 'module' attribute enables binding of styles, and allows prepending module name to classnames */
+  .list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+</style>
