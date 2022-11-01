@@ -1,31 +1,35 @@
-<script>
-import { defineNuxtComponent } from '#app'
+<script setup>
+// Composition API is just vanilla JS
 
-export default defineNuxtComponent({
-  data: () => ({
-    todoList: []
-  }),
-  computed: {
-    completedItems() {
-      return this.todoList.filter(item => item.completed)
-    },
-    remainingItems() {
-      return this.todoList.filter(item => !item.completed)
-    }
-  },
-  methods: {
-    fetchTodoList() {
-      fetch('https://jsonplaceholder.typicode.com/todos/')
-        .then(response => response.json())
-        .then(json => {
-          this.todoList = json
-        })
-    }
-  }
-})
+import { computed, ref } from 'vue';
+
+  // if you defined this with 'let todoList = []', it'd
+  // automagically make it reactive on compile.
+  // defining with the helper method 'ref' makes
+  // it clear that we're using vue's help here.
+  const todoList = ref([]);
+
+  const completedItems = computed(() => {
+    return todoList.value.filter(item => item.completed);
+  });
+
+  const remainingItems = computed(() => {
+    return todoList.value.filter(item => !item.completed);
+  });
+
+  const fetchTodoList = () => {
+    fetch('https://jsonplaceholder.typicode.com/todos/')
+      .then(response => response.json())
+      .then(json => {
+        todoList.value = json
+      })
+  };
 </script>
 
 <template>
+  <!-- Note: NUXT requires a single root in templates (Vue 3 does not)
+        This helps NUXT determine what to hydrate, how to contain 
+        elements for page transitions, etc. -->
   <div>
     <img src="/todo.jpg" alt="Todo photo by Glenn Casterns-Peters" />
     <p>
