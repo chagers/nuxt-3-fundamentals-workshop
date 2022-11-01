@@ -44,13 +44,13 @@ import { computed, ref } from 'vue';
         >Unsplash</a
       >
     </p>
-    <h1>Hello Frontend Masters!</h1>
+    <h1 class="heading">Hello Frontend Masters!</h1>
     <button @click="fetchTodoList">Fetch Data</button>
     <p>
       {{ completedItems.length }} completed |
       {{ remainingItems.length }} remaining
     </p>
-    <ul :class="$style.list">
+    <ul class="list">
       <li v-for="todo in todoList" :key="`todo-id-${todo.id}`">
         <input type="checkbox" :checked="todo.completed" /> {{ todo.title }}
       </li>
@@ -59,11 +59,22 @@ import { computed, ref } from 'vue';
 </template>
 
 <!-- Reserve using the style element for cases in which encapsulation is paramount -->
-<style module>
-  /* 'scoped' variable is appended with a unique id for encapsulating styles per component */
-  /* 'module' attribute enables binding of styles, and allows prepending module name to classnames */
-  .list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
+<!-- /* 'scoped' variable is appended with a unique id for encapsulating styles per component */
+/* 'module' attribute enables binding of styles, and allows prepending module name to classnames */ -->
+<style lang="scss">
+@import './assets/styles/main.scss';
+
+:root {
+  --text-color: #{$text-color};
+}
+
+.heading {
+  color: var(--text-color);
+}
+
+.list {
+  color: var(--text-color);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
 </style>
