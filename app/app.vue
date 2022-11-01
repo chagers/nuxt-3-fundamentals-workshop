@@ -30,7 +30,7 @@ import { computed, ref } from 'vue';
   <!-- Note: NUXT requires a single root in templates (Vue 3 does not)
         This helps NUXT determine what to hydrate, how to contain 
         elements for page transitions, etc. -->
-  <div>
+  <div class="section">
     <img src="/todo.jpg" alt="Todo photo by Glenn Casterns-Peters" />
     <p>
       Photo by
@@ -44,7 +44,7 @@ import { computed, ref } from 'vue';
         >Unsplash</a
       >
     </p>
-    <h1 class="heading">Hello Frontend Masters!</h1>
+    <h1 class="title">Hello Frontend Masters!</h1>
     <button @click="fetchTodoList">Fetch Data</button>
     <p>
       {{ completedItems.length }} completed |
@@ -60,16 +60,14 @@ import { computed, ref } from 'vue';
 
 <!-- Reserve using the style element for cases in which encapsulation is paramount -->
 <!-- /* 'scoped' variable is appended with a unique id for encapsulating styles per component */
-/* 'module' attribute enables binding of styles, and allows prepending module name to classnames */ -->
+/* 'module' attribute enables binding of styles, and allows prepending module name to classnames, BUT will apply to everything that's imported */ -->
+<!-- need lang def if not using a preprocessor -->
 <style lang="scss">
+@import './node_modules/bulma/bulma.sass';
 @import './assets/styles/main.scss';
 
 :root {
   --text-color: #{$text-color};
-}
-
-.heading {
-  color: var(--text-color);
 }
 
 .list {
