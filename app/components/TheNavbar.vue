@@ -1,6 +1,4 @@
 <script setup>
-// Ben's preference is to prefix components with 'The'
-// if there should only be one of them on a page.
 </script>
 
 <template>
