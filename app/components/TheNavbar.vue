@@ -32,7 +32,9 @@
 
           <div class="navbar-dropdown">
             <NuxtLink to="/display/todos" class="navbar-item">ToDos</NuxtLink>
+            <NuxtLink to="/display/todos?completed=true" class="navbar-item">Completed ToDos</NuxtLink>
             <NuxtLink to="/display/photos" class="navbar-item">Photos</NuxtLink>
+            <NuxtLink to="/display/photos?even=true" class="navbar-item">Even Photos</NuxtLink>
           </div>
         </div>
       </div>

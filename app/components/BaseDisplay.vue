@@ -1,16 +1,14 @@
 <script setup>
-import { defineEmits, defineProps, ref } from 'vue';
 
-// Declaring this a var gives you access to 'props' object
-// default array must be a func that generates a new array
+const route = useRoute();
+
+// get the item type from the url params
+const itemType = route.path.split('/')[2];
+
 const props = defineProps({
   itemList: {
     type: Array,
     default: () => [],
-  },
-  itemType: {
-    type: String,
-    required: true,
   },
   title: {
     type: String,
@@ -20,24 +18,19 @@ const props = defineProps({
 
 const emit = defineEmits(['update:itemList']);
 
-
-function fetchItemList() {
-  fetch(`https://jsonplaceholder.typicode.com/${props.itemType}`)
-    .then(response => response.json())
-    .then(json => {
-      emit('update:itemList', json);
-    })
-}
+// immediately fetch your data on page load
+// see lifecycle methods for more details
+fetch(`https://jsonplaceholder.typicode.com/${itemType}`)
+  .then(response => response.json())
+  .then(json => {
+    emit('update:itemList', json);
+  })
 </script>
 
 <template>
   <div class="section">
     <slot name="hero" />
     <h1 class="title">{{ title }}</h1>
-    <!-- By adding an emit to this event, the child can now bubble up
-          data changes to the parent component,
-          and leave any sort of computing at the parent level -->
-    <button @click="fetchItemList">Fetch Data</button>
     <slot name="metrics" />
     <ul class="list">
       <slot name="items" :itemList="itemList" />
