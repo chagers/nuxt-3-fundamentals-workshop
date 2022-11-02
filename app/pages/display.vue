@@ -1,16 +1,14 @@
 <script setup></script>
 
 <template>
-  <div class="container">
-    <div class="section">
-      <h1 class="title">Display</h1>
-      <!-- Adding a key attribute forces refresh -->
-      <!-- Pulls in pages listed in display folder,
-            and means that only those pages are loaded
-            when their nested route is hit -->
-      <NuxtPage />
+  <NuxtLayout name="display">
+    <div class="container">
+      <div class="section">
+        <h1 class="title">Display</h1>
+        <NuxtPage />
+      </div>
     </div>
-  </div>
+  </NuxtLayout>
 </template>
 
 <style lang="scss">
