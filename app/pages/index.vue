@@ -27,6 +27,6 @@
 
 <style lang="scss">
 body {
-  font-family: 'Poor Story', cursive !important;
+  font-family: 'Poor Story', cursive;
 }
 </style>
